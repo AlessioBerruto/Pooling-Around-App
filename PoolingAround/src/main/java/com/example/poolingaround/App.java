@@ -1,4 +1,4 @@
-package PoolingAround;
+package com.example.poolingaround;
 
 /**
  * Hello world!
