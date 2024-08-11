@@ -1,0 +1,8 @@
+com\example\poolingaround\App.class
+com\example\poolingaround\models\Prenotazione.class
+com\example\poolingaround\services\PrenotazioneService.class
+com\example\poolingaround\models\Utente.class
+com\example\poolingaround\services\UtenteService.class
+com\example\poolingaround\services\ViaggioService.class
+com\example\poolingaround\models\Viaggio.class
+com\example\poolingaround\services\CsvService.class
