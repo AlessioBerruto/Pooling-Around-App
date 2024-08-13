@@ -2,6 +2,7 @@ package com.example.poolingaround.services;
 
 import com.example.poolingaround.models.Prenotazione;
 
+
 import java.util.List;
 
 public class PrenotazioneService {
@@ -9,6 +10,11 @@ public class PrenotazioneService {
 
     public PrenotazioneService(List<Prenotazione> prenotazioni) {
         this.prenotazioni = prenotazioni;
+    }
+
+    public PrenotazioneService(String filePath) {
+        CsvService csvService = new CsvService();
+        this.prenotazioni = csvService.leggiPrenotazioni(filePath);
     }
 
     public List<Prenotazione> getPrenotazioni() {

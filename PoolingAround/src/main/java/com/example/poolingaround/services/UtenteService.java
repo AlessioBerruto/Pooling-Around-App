@@ -2,6 +2,7 @@ package com.example.poolingaround.services;
 
 import com.example.poolingaround.models.Utente;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class UtenteService {
@@ -26,4 +27,10 @@ public class UtenteService {
                 .findFirst()
                 .orElse(null);
     }
+    
+    // Metodo per creare un nuovo Utente da dati CSV
+    public Utente creaUtente(int id, String nome, String cognome, LocalDate dataNascita, String indirizzo, String documentoId) {
+    return new Utente(id, nome, cognome, dataNascita, indirizzo, documentoId);
+}
+
 }
