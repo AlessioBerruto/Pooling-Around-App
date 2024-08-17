@@ -4,93 +4,81 @@ import com.example.poolingaround.models.Utente;
 import com.example.poolingaround.models.Viaggio;
 import com.example.poolingaround.models.Prenotazione;
 import com.example.poolingaround.services.CsvService;
+import com.example.poolingaround.services.PrenotazioneService;
 import com.example.poolingaround.services.UtenteService;
 import com.example.poolingaround.services.ViaggioService;
 
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Scanner;
 
 public class App {
-    // Definisci il formato per la data
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    private static final String FILE_UTENTI = "C:/Users/aless/OneDrive/Desktop/Alessio Lavoro/Progetti/Progetto Java Basics di Alessio Berruto/resources/utenti.csv";
+    private static final String FILE_VIAGGI = "C:/Users/aless/OneDrive/Desktop/Alessio Lavoro/Progetti/Progetto Java Basics di Alessio Berruto/resources/viaggi.csv";
+    private static final String FILE_PRENOTAZIONI = "C:/Users/aless/OneDrive/Desktop/Alessio Lavoro/Progetti/Progetto Java Basics di Alessio Berruto/resources/prenotazioni.csv";
 
     public static void main(String[] args) {
         CsvService csvService = new CsvService();
 
-        // Caricamento dei dati dagli CSV
-        List<Utente> utenti = csvService.leggiUtenti("resources/utenti.csv");
-        List<Viaggio> viaggi = csvService.leggiViaggi("resources/viaggi.csv");
-        List<Prenotazione> prenotazioni = csvService.leggiPrenotazioni("resources/prenotazioni.csv");
+        List<Utente> utenti = csvService.leggiUtenti(FILE_UTENTI);
+        List<Viaggio> viaggi = csvService.leggiViaggi(FILE_VIAGGI);
+        List<Prenotazione> prenotazioni = csvService.leggiPrenotazioni(FILE_PRENOTAZIONI);
 
-        // Inizializzazione dei servizi
         UtenteService utenteService = new UtenteService(utenti);
-        ViaggioService viaggioService = new ViaggioService(viaggi, prenotazioni);
-        
+        ViaggioService viaggioService = new ViaggioService(viaggi, csvService);
+        PrenotazioneService prenotazioneService = new PrenotazioneService(prenotazioni, viaggi);
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String input;
+        Scanner scanner = new Scanner(System.in);
+        boolean exit = false;
 
-        while (true) {
-            System.out.println("Seleziona un comando:");
-            System.out.println("1 - Visualizzare tutti i viaggi");
-            System.out.println("2 - Prenotare un viaggio");
-            System.out.println("3 - Disdire una prenotazione");
-            System.out.println("4 - Aggiungere un nuovo utente");
-            System.out.println("5 - Esportare i viaggi disponibili");
-            System.out.println("0 - Uscire");
+        while (!exit) {
+            System.out.println("Scegli un'opzione:");
+            System.out.println("1. Visualizza tutti i viaggi");
+            System.out.println("2. Prenota un viaggio");
+            System.out.println("3. Cancella una prenotazione");
+            System.out.println("4. Aggiungi un nuovo utente");
+            System.out.println("5. Esporta i viaggi");
+            System.out.println("0. Esci");
 
-            try {
-                input = reader.readLine();
+            int scelta = Integer.parseInt(scanner.nextLine());
 
-                switch (input) {
-                    case "1":
-                        viaggioService.visualizzaViaggi();
-                        break;
-                    case "2":
-                        viaggioService.prenotaViaggio();
-                        break;
-                    case "3":
-                        viaggioService.cancellaPrenotazione();
-                        break;
-
-                    case "4":
-                        System.out.println("Inserisci ID Utente:");
-                        int id = Integer.parseInt(reader.readLine());
-                        System.out.println("Inserisci Nome:");
-                        String nome = reader.readLine();
-                        System.out.println("Inserisci Cognome:");
-                        String cognome = reader.readLine();
-                        System.out.println("Inserisci Data di Nascita (dd/MM/yyyy):");
-                        String dataNascita = reader.readLine();
-                        System.out.println("Inserisci Indirizzo:");
-                        String indirizzo = reader.readLine();
-                        System.out.println("Inserisci Documento ID:");
-                        String documentoId = reader.readLine();
-
-                        Utente utente = new Utente(id, nome, cognome, LocalDate.parse(dataNascita, FORMATTER),
-                                indirizzo, documentoId);
-                        utenteService.aggiungiUtente(utente);
-                        break;
-
-                    case "5":
-                        csvService.esportaViaggiDisponibili(viaggioService.getViaggiDisponibili(),
-                                csvService.getNomeFileEsportazione());
-                        break;
-                    case "0":
-                        System.out.println("Uscita dal programma...");
-                        return;
-                    default:
-                        System.out.println("Comando non riconosciuto.");
-                        break;
-                }
-            } catch (IOException e) {
-                System.out.println("Errore di input: " + e.getMessage());
+            switch (scelta) {
+                case 1:
+                    viaggioService.visualizzaViaggi();
+                    break;
+                case 2:
+                    System.out.println("Inserisci ID Viaggio:");
+                    int idViaggio = Integer.parseInt(scanner.nextLine());
+                    System.out.println("Inserisci ID Utente:");
+                    int idUtente = Integer.parseInt(scanner.nextLine());
+                    prenotazioneService.prenotaViaggio(idViaggio, idUtente);
+                    csvService.salvaViaggi(FILE_VIAGGI, viaggi);
+                    csvService.salvaPrenotazioni(FILE_PRENOTAZIONI, prenotazioni);
+                    break;
+                case 3:
+                    System.out.println("Inserisci ID Prenotazione:");
+                    int idPrenotazione = Integer.parseInt(scanner.nextLine());
+                    prenotazioneService.cancellaPrenotazione(idPrenotazione);
+                    csvService.salvaViaggi(FILE_VIAGGI, viaggi);
+                    csvService.salvaPrenotazioni(FILE_PRENOTAZIONI, prenotazioni);
+                    break;
+                case 4:
+                    utenteService.aggiungiUtente();
+                    csvService.salvaUtenti(FILE_UTENTI, utenti);
+                    break;
+                case 5:
+                    String nomeFileEsportazione = viaggioService.getNomeFileEsportazione();
+                    viaggioService.esportaViaggiDisponibili(nomeFileEsportazione);
+                    System.out.println("Viaggi esportati con successo in " + nomeFileEsportazione);
+                    break;
+                case 0:
+                    exit = true;
+                    System.out.println("Uscita dal programma.");
+                    break;
+                default:
+                    System.out.println("Opzione non valida, riprova.");
             }
         }
+        scanner.close();
     }
 }
