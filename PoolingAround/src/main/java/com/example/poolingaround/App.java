@@ -37,7 +37,7 @@ public class App {
             System.out.println("2. Prenota un viaggio");
             System.out.println("3. Cancella una prenotazione");
             System.out.println("4. Aggiungi un nuovo utente");
-            System.out.println("5. Esporta i viaggi");
+            System.out.println("5. Esporta i viaggi disponibili");
             System.out.println("0. Esci");
 
             int scelta = Integer.parseInt(scanner.nextLine());

@@ -30,13 +30,13 @@ public class UtenteService {
             System.out.println("Inserisci il documento ID:");
             String documentoId = scanner.nextLine();
     
-            int id = utenti.size() + 1; // genera un nuovo ID basato sulla dimensione della lista
+            int id = utenti.size() + 1; 
             Utente nuovoUtente = new Utente(id, nome, cognome, dataNascita, indirizzo, documentoId);
             utenti.add(nuovoUtente);
     
             System.out.println("Utente aggiunto con successo.");
         } finally {
-            scanner.close(); // Chiude lo scanner per evitare perdite di risorse
+            scanner.close(); 
         }
     }
     

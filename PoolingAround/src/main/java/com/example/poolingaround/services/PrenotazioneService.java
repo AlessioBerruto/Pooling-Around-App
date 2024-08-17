@@ -15,7 +15,7 @@ public class PrenotazioneService {
         this.viaggi = viaggi;
     }
 
-    // Prenotare un viaggio
+    
     public void prenotaViaggio(int idViaggio, int idUtente) {
         Viaggio viaggio = trovaViaggio(idViaggio);
 
@@ -24,16 +24,23 @@ public class PrenotazioneService {
             return;
         }
 
-        int nuovoIdPrenotazione = prenotazioni.stream().mapToInt(Prenotazione::getId).max().orElse(0) + 1;
-        Prenotazione nuovaPrenotazione = new Prenotazione(nuovoIdPrenotazione, idViaggio, idUtente);
+        boolean prenotazioneEsistente = prenotazioni.stream()
+                .anyMatch(p -> p.getIdViaggio() == idViaggio);
+
+        if (prenotazioneEsistente) {
+            System.out.println("Questo viaggio è già stato prenotato.");
+            return;
+        }
+
+        Prenotazione nuovaPrenotazione = new Prenotazione(idViaggio, idViaggio, idUtente);
 
         prenotazioni.add(nuovaPrenotazione);
         viaggio.setDisponibile(false);
 
-        System.out.println("Prenotazione effettuata con successo. ID Prenotazione: " + nuovoIdPrenotazione);
+        System.out.println("Prenotazione effettuata con successo. ID Prenotazione: " + idViaggio);
     }
 
-    // Cancellare una prenotazione
+    
     public void cancellaPrenotazione(int idPrenotazione) {
         Prenotazione prenotazione = trovaPrenotazione(idPrenotazione);
 

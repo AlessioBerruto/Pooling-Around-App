@@ -9,10 +9,10 @@ import java.util.List;
 public class ViaggioService {
 
     private List<Viaggio> viaggi;
-    private CsvService csvService;  // Dichiarazione della variabile CsvService
+    private CsvService csvService;  
     private static final DateTimeFormatter VISUAL_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    // Costruttore che accetta sia la lista dei viaggi che l'istanza di CsvService
+    
     public ViaggioService(List<Viaggio> viaggi, CsvService csvService) {
         this.viaggi = viaggi;
         this.csvService = csvService;
@@ -43,7 +43,7 @@ public class ViaggioService {
     }
 
     public void esportaViaggiDisponibili(String nomeFile) {
-        List<Viaggio> viaggiDisponibili = getViaggiDisponibili(); // Utilizzo del metodo per ottenere i viaggi disponibili
+        List<Viaggio> viaggiDisponibili = getViaggiDisponibili(); 
         csvService.esportaViaggiDisponibili(viaggiDisponibili, nomeFile);
     }
 }

@@ -208,9 +208,7 @@ public class CsvService {
             for (Viaggio viaggio : viaggiDisponibili) {
                 csvPrinter.printRecord(
                         viaggio.getId(),
-                        viaggio.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), // Assicurati che il
-                                                                                             // formato della data sia
-                                                                                             // corretto
+                        viaggio.getData().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), 
                         viaggio.getDurata(),
                         viaggio.getPartenza(),
                         viaggio.getArrivo());
