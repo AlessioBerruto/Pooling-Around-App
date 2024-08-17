@@ -1,6 +1,6 @@
 ID;Data;Durata;Partenza;Arrivo;Disponibile
-1;28/03/2021;4;Bologna;Torino;NO
-2;04/04/2021;48;Foggia;Bari;SI
+1;28/03/2021;4;Bologna;Torino;SI
+2;04/04/2021;48;Foggia;Bari;NO
 3;06/07/2021;72;Napoli;Piacenza;SI
 4;10/04/2021;6;Mantova;Genova;NO
 5;15/11/2021;240;Aosta;Roma;SI
