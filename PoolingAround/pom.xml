@@ -41,7 +41,7 @@
           <target>${maven.compiler.target}</target>
           <encoding>${project.build.sourceEncoding}</encoding>
         </configuration>
-      </plugin>
+      </plugin>      
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
