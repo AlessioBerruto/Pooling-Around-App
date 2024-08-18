@@ -1,0 +1,37 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Maven build directory
+/target/
+
+# VSCode settings
+.vscode/
+
+# IntelliJ IDEA files (se usato)
+.idea/
+*.iml
+out/
+
+# Eclipse files (se usato)
+.project
+.classpath
+.metadata/
+
+# Dependency directories
+.m2/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Maven wrapper files
+.mvn/
+
+# Java dependencies (if using a dependency management tool)
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
