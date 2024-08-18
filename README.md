@@ -21,22 +21,22 @@ Assicurati di avere installato sul tuo sistema:
 - Java Development Kit (JDK) 8 o superiore
 - Apache Maven
 
-# Configurazione dell'Ambiente
+## Configurazione dell'Ambiente
 Assicurati che le variabili d'ambiente `JAVA_HOME` e `MAVEN_HOME` siano configurate correttamente.
 
 
 ## Installazione
 Istruzioni passo-passo su come installare e configurare il progetto:
 
-# Clona il repository
+## Clona il repository
 ```bash
 git clone https://github.com/tuo-username/PoolingAround.git
 ```
-# Naviga nella directory del progetto
+## Naviga nella directory del progetto
 ```bash
 cd PoolingAround
 ```
-# Compila il progetto usando Maven
+## Compila il progetto usando Maven
 ```bash
 mvn clean package
 ```
