@@ -19,14 +19,17 @@ public class ViaggioService {
     }
 
     public void visualizzaViaggi() {
+        System.out.println();
         System.out.printf("%-5s | %-10s | %-7s | %-15s | %-15s | %-10s\n", "ID", "Data", "Durata", "Partenza", "Arrivo",
                 "Disponibile");
+                System.out.println();
         for (Viaggio viaggio : viaggi) {
             String formattedDate = viaggio.getData().format(VISUAL_FORMATTER);
             System.out.printf("%-5d | %-10s | %-7d | %-15s | %-15s | %-10s\n", viaggio.getId(), formattedDate,
                     viaggio.getDurata(), viaggio.getPartenza(), viaggio.getArrivo(),
-                    viaggio.isDisponibile() ? "SI" : "NO");
+                    viaggio.isDisponibile() ? "SI" : "NO");                    
         }
+        System.out.println();
     }
 
     public List<Viaggio> getViaggiDisponibili() {
@@ -46,4 +49,9 @@ public class ViaggioService {
         List<Viaggio> viaggiDisponibili = getViaggiDisponibili(); 
         csvService.esportaViaggiDisponibili(viaggiDisponibili, nomeFile);
     }
+
+    public Viaggio trovaViaggio(int idViaggio) {
+        return viaggi.stream().filter(v -> v.getId() == idViaggio).findFirst().orElse(null);
+    }
+    
 }

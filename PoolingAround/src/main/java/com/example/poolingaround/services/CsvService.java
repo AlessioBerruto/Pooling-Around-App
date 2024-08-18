@@ -45,6 +45,7 @@ public class CsvService {
 
                 if (csvRecord.size() < 6) {
                     System.err.println("Riga vuota o malformattata: " + csvRecord);
+                    System.out.println();
                     continue;
                 }                
 
@@ -53,6 +54,7 @@ public class CsvService {
                     dataDiNascita = LocalDate.parse(csvRecord.get("Data di nascita"), FORMATTER);
                 } catch (Exception e) {
                     System.err.println("Data di nascita non valida per il record: " + csvRecord);
+                    System.out.println();
                     continue;
                 }
                 Utente utente = new Utente(
@@ -83,6 +85,7 @@ public class CsvService {
             for (CSVRecord csvRecord : csvParser) {
                 if (csvRecord.size() < 6) {
                     System.err.println("Riga vuota o malformattata: " + csvRecord);
+                    System.out.println();
                     continue;
                 }
 
@@ -90,6 +93,7 @@ public class CsvService {
                 String dataStr = csvRecord.get("Data");
                 if (dataStr == null || dataStr.trim().isEmpty()) {
                     System.err.println("Data non valida per il record: " + csvRecord);
+                    System.out.println();
                     continue;
                 }
 
@@ -97,6 +101,7 @@ public class CsvService {
                     data = LocalDate.parse(dataStr, FORMATTER);
                 } catch (Exception e) {
                     System.err.println("Errore di parsing per la data: " + dataStr + " nel record: " + csvRecord);
+                    System.out.println();
                     continue;
                 }
 
@@ -127,6 +132,7 @@ public class CsvService {
             for (CSVRecord csvRecord : csvParser) {
                 if (csvRecord.size() < 3) {
                     System.err.println("Riga vuota o malformattata: " + csvRecord);
+                    System.out.println();
                     continue;
                 }
 
@@ -216,6 +222,7 @@ public class CsvService {
             csvPrinter.flush();
         } catch (IOException e) {
             System.out.println("Errore durante l'esportazione: " + e.getMessage());
+            System.out.println();
         }
     }
 

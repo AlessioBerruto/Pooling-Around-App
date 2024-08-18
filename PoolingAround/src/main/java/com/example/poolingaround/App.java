@@ -26,7 +26,7 @@ public class App {
 
         UtenteService utenteService = new UtenteService(utenti);
         ViaggioService viaggioService = new ViaggioService(viaggi, csvService);
-        PrenotazioneService prenotazioneService = new PrenotazioneService(prenotazioni, viaggi);
+        PrenotazioneService prenotazioneService = new PrenotazioneService(prenotazioni, viaggi, FILE_PRENOTAZIONI);
 
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
@@ -46,35 +46,55 @@ public class App {
                 case 1:
                     viaggioService.visualizzaViaggi();
                     break;
+
                 case 2:
-                    System.out.println("Inserisci ID Viaggio:");
-                    int idViaggio = Integer.parseInt(scanner.nextLine());
-                    System.out.println("Inserisci ID Utente:");
-                    int idUtente = Integer.parseInt(scanner.nextLine());
-                    prenotazioneService.prenotaViaggio(idViaggio, idUtente);
-                    csvService.salvaViaggi(FILE_VIAGGI, viaggi);
-                    csvService.salvaPrenotazioni(FILE_PRENOTAZIONI, prenotazioni);
+                    System.out.println();
+                    boolean viaggioValido = false;
+                    while (!viaggioValido) {
+                        System.out.println("Inserisci ID Viaggio:");
+                        int idViaggio = Integer.parseInt(scanner.nextLine());
+
+                        if (viaggioService.trovaViaggio(idViaggio) == null) {
+                            System.out.println("Viaggio non disponibile o inesistente.");
+                            System.out.println("Riprova inserendo un ID Viaggio valido.");
+                            System.out.println();
+                            continue;
+                        }
+
+                        System.out.println("Inserisci ID Utente:");
+                        int idUtente = Integer.parseInt(scanner.nextLine());
+                        prenotazioneService.prenotaViaggio(idViaggio, idUtente);
+                        csvService.salvaViaggi(FILE_VIAGGI, viaggi);
+                        csvService.salvaPrenotazioni(FILE_PRENOTAZIONI, prenotazioni);
+                        viaggioValido = true; 
+                    }
                     break;
+
                 case 3:
-                    System.out.println("Inserisci ID Prenotazione:");
+                    prenotazioneService.visualizzaPrenotazioniDaFile();
+                    System.out.println("Inserisci ID Prenotazione da cancellare:");
                     int idPrenotazione = Integer.parseInt(scanner.nextLine());
                     prenotazioneService.cancellaPrenotazione(idPrenotazione);
                     csvService.salvaViaggi(FILE_VIAGGI, viaggi);
                     csvService.salvaPrenotazioni(FILE_PRENOTAZIONI, prenotazioni);
                     break;
+
                 case 4:
                     utenteService.aggiungiUtente();
                     csvService.salvaUtenti(FILE_UTENTI, utenti);
                     break;
+
                 case 5:
                     String nomeFileEsportazione = viaggioService.getNomeFileEsportazione();
                     viaggioService.esportaViaggiDisponibili(nomeFileEsportazione);
                     System.out.println("Viaggi esportati con successo in " + nomeFileEsportazione);
                     break;
+
                 case 0:
                     exit = true;
                     System.out.println("Uscita dal programma.");
                     break;
+
                 default:
                     System.out.println("Opzione non valida, riprova.");
             }
