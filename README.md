@@ -47,7 +47,7 @@ mvn clean package
 2. Per eseguire l'applicazione, naviga nella directory del progetto principale e utilizza il seguente comando:
 
 ```bash
-java -jar target/poolingaround.jar
+java -jar target/PoolingAround-1.0-SNAPSHOT.jar
 ```
 
 3. Segui le istruzioni a schermo per:
