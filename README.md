@@ -10,12 +10,12 @@ Una semplice applicazione Java per la gestione delle prenotazioni di viaggi, pen
 - [Esecuzione](#esecuzione)
 - [Contributo](#contributo)
 
-## Introduzione
+# Introduzione
 
 PoolingAround è un'applicazione Java che permette di gestire le prenotazioni dei viaggi in modo semplice ed efficace. L'applicazione consente di visualizzare i viaggi disponibili, prenotare un viaggio, cancellare una prenotazione, aggiungere nuovi utenti e esportare i viaggi disponibili in un file CSV. Il progetto è stato sviluppato per comprendere i concetti fondamentali della programmazione in Java e l'uso di Maven come strumento di gestione del progetto.
 
 
-## Prerequisiti
+# Prerequisiti
 Assicurati di avere installato sul tuo sistema:
 
 - Java Development Kit (JDK) 8 o superiore
@@ -25,32 +25,29 @@ Assicurati di avere installato sul tuo sistema:
 Assicurati che le variabili d'ambiente `JAVA_HOME` e `MAVEN_HOME` siano configurate correttamente.
 
 
-## Installazione
+# Installazione ed esecuzione
 Istruzioni passo-passo su come installare e configurare il progetto:
 
 ## Clona il repository
 ```bash
-git clone https://github.com/tuo-username/PoolingAround.git
+git clone https://github.com/AlessioBerruto/Pooling-Around-App.git
 ```
+## Estrai il file JAR 
+Estrai il file JAR (PoolingAround-1.0-SNAPSHOT-shaded.jar) nella directory principale del progetto clonato (PoolingAround)
+
+
+# Esecuzione
+
 ## Naviga nella directory del progetto
 ```bash
 cd PoolingAround
 ```
-## Compila il progetto usando Maven
+## Esegui l'applicazione con il comando:
 ```bash
-mvn clean package
+java -jar PoolingAround-1.0-SNAPSHOT-shaded.jar 
 ```
 
-## Esecuzione
-1. Dopo aver compilato il progetto con Maven, il file `poolingaround.jar` verrà generato nella directory `target`.
-
-2. Per eseguire l'applicazione, naviga nella directory del progetto principale e utilizza il seguente comando:
-
-```bash
-java -jar target/PoolingAround-1.0-SNAPSHOT-shaded.jar
-```
-
-3. Segui le istruzioni a schermo per:
+- Segui le istruzioni a schermo per:
 
 - 1 : Visualizzare tutti i viaggi disponibili.
 - 2 : Prenotare un viaggio specificando l'ID del viaggio e dell'utente.
@@ -59,10 +56,10 @@ java -jar target/PoolingAround-1.0-SNAPSHOT-shaded.jar
 - 5 : Esportare i viaggi disponibili in un file CSV.
 - 0 : Chiudere l'applicazione.
   
-4. Interagisci con il menu per eseguire le diverse operazioni.
+- Interagisci con il menu per eseguire le diverse operazioni.
 
 
-## Contributo
+# Contributo
 Istruzioni su come contribuire al progetto:
 
 - Fai una copia del progetto.
