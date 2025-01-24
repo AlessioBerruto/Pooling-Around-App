@@ -33,7 +33,7 @@ Istruzioni passo-passo su come installare e configurare il progetto:
 git clone https://github.com/AlessioBerruto/Pooling-Around-App.git
 ```
 ## Estrai il file JAR 
-Estrai il file JAR (PoolingAround-1.0-SNAPSHOT-shaded.jar) nella directory principale del progetto clonato (PoolingAround)
+Estrai dalla cartella zip il file JAR (PoolingAround-1.0-SNAPSHOT-shaded.jar) nella directory principale del progetto clonato (PoolingAround)
 
 
 # Esecuzione
