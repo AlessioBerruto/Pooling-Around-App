@@ -41,6 +41,7 @@ Estrai dalla cartella zip il file JAR (PoolingAround-1.0-SNAPSHOT-shaded.jar) ne
 ## Naviga nella directory del progetto
 ```bash
 cd PoolingAround
+cd target
 ```
 ## Esegui l'applicazione con il comando:
 ```bash
